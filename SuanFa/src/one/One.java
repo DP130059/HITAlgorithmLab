@@ -8,14 +8,14 @@ import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 
 public class One {
-	public static final int HOW_MANY_POINTS = 100;
+	public static final int HOW_MANY_POINTS = 6000;
 	public static final List<Point> Points = new ArrayList<Point>(HOW_MANY_POINTS);
 	public static final List<Point> divideConquerResult = new ArrayList<Point>();
 	public static final Map<Point, Boolean> visitedRecord = new HashMap<Point, Boolean>();
 
 	public static void main(String[] args) {
 		generatePoints();
-		brutal();
+		//brutal();
 		Graham_Scan();
 		divide_Conquer();
 
@@ -27,7 +27,7 @@ public class One {
 		for (Point p : copy) {
 			visitedRecord.put(p, false);
 		}
-		long startTime = System.currentTimeMillis();
+		long startTime =System.nanoTime();;
 		List<Point> sortPoints = sortx(copy);
 		Point p_0 = sortPoints.get(0);
 		Point p_n = sortPoints.get(1);
@@ -49,9 +49,9 @@ public class One {
 		}
 		divide(upPoints,p_0,p_n);
 		divide(downPoints,p_0,p_n);
-		long endTime = System.currentTimeMillis();
-		System.out.println("分治算法用时： " + (endTime - startTime) + "ms");
-		writeTofile("result/1/DivideAndConquerResult.txt", divideConquerResult);
+		long endTime = System.nanoTime();;
+		System.out.println("分治算法用时： " + (endTime - startTime) + "ns");
+		//writeTofile("result/1/DivideAndConquerResult.txt", divideConquerResult);
 	}
 
 	public static void divide(List<Point> points,Point p_0,Point p_n) {		
@@ -109,7 +109,7 @@ public class One {
 
 	}
 	public static void Graham_Scan() {
-		long startTime = System.currentTimeMillis();
+		long startTime = System.nanoTime();;
 		List<Point> copy = new ArrayList<Point>();
 		copy.addAll(Points);
 		List<Point> result = new ArrayList<Point>();
@@ -131,6 +131,8 @@ public class One {
 		for (int i = 3; i < HOW_MANY_POINTS - 1; i++) {
 			Point pi = copy.get(i);
 			while (true) {
+				if(pointStack.size()==1)
+					break;
 				Point top = pointStack.pop();
 				Point nexttotop = pointStack.peek();
 				boolean judge = top.judge(pi, nexttotop);
@@ -143,9 +145,9 @@ public class One {
 
 		}
 		result.addAll(pointStack);
-		long endTime = System.currentTimeMillis();
-		System.out.println("Graham_Scan算法用时： " + (endTime - startTime) + "ms");
-		writeTofile("result/1/Graham_ScanResult.txt", result);
+		long endTime = System.nanoTime();
+		System.out.println("Graham_Scan算法用时： " + (endTime - startTime) + "ns");
+		//writeTofile("result/1/Graham_ScanResult.txt", result);
 
 	}
 
@@ -236,6 +238,7 @@ public class One {
 							}
 						}
 					}
+					//System.gc();
 				}
 
 			}
@@ -247,7 +250,7 @@ public class One {
 		}
 		long endTime = System.currentTimeMillis();
 		System.out.println("暴力遍历算法用时： " + (endTime - startTime) + "ms");
-		writeTofile("result/1/brutal.txt", copy);
+		//writeTofile("result/1/brutal.txt", copy);
 	}
 
 }
