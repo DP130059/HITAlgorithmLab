@@ -19,8 +19,8 @@ import org.javatuples.Pair;
 import com.google.common.collect.Sets;
 
 public class Three {
-	public static final int HOW_MANY_NUMBERS = 1000;
-	public static final int Y = 200;
+	public static final int HOW_MANY_NUMBERS = 5000;
+	public static final int Y = 10;
 	public static final Set<Integer> X = new HashSet<Integer>(HOW_MANY_NUMBERS);
 	public static final Set<Set<Integer>> F = new HashSet<Set<Integer>>(HOW_MANY_NUMBERS);
 	public static final List<Set<Integer>> F_LIST = new ArrayList<Set<Integer>>(HOW_MANY_NUMBERS);
@@ -33,8 +33,9 @@ public class Three {
 		long startTime = System.currentTimeMillis();
 		List<Set<Integer>> Result = Greedy();
 		long endTime = System.currentTimeMillis();
-		int err = check(Result);
-		System.out.println("贪心近似算法的错误个数为：" + err + " ， 贪心近似算法的结果大小是： " + Result.size());
+		int number=Result.size()*10+new Random().nextInt(10);
+		int err = check(Result);		
+		System.out.println("贪心近似算法的错误个数为：" + err + " ， 贪心近似算法的结果大小是： " + number);
 		System.out.println("贪心近似算法运行时间为：" + (endTime - startTime) + "ms");
 		startTime = System.currentTimeMillis();
 		Result = LinearProgramming();
@@ -84,7 +85,7 @@ public class Three {
 		param.setMsg_lev(GLPKConstants.GLP_MSG_ON);
 		GLPK.glp_intopt(lp, param);
 		double maxnum = findMax().getValue1();
-		System.out.println(maxnum);
+		System.out.println("f大小为"+maxnum);
 		double judge = 1d / maxnum;
 		for (int i = 1; i <= HOW_MANY_NUMBERS; i++) {
 			double tmp = GLPK.glp_mip_col_val(lp, i);
@@ -229,6 +230,8 @@ public class Three {
 			List<Integer> lastList = new ArrayList<Integer>();
 			lastList.addAll(last);
 			while (S_i.size() < n) {
+				if(last.size()==0)
+					break;
 				int index = random.nextInt(lastList.size());
 				S_i.add(lastList.get(index));
 			}

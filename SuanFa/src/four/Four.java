@@ -34,9 +34,9 @@ public class Four {
 			List<Double>copyList2=new ArrayList<Double>(HOW_MANY_NUMBERS);
 			copyList2.addAll(dataList);
 			long startTime = System.currentTimeMillis();
-			//randomQuickSort(dataList, 0, HOW_MANY_NUMBERS - 1);
+			randomQuickSort(dataList, 0, HOW_MANY_NUMBERS - 1);
 			long endTime =  System.currentTimeMillis();
-			//System.out.println("随机快速排序算法用时： " + (endTime - startTime) + " ms");
+			System.out.println("随机快速排序算法用时： " + (endTime - startTime) + " ms");
 			startTime= System.currentTimeMillis();
 			copyList.sort(new Comparator<Double>() {
 

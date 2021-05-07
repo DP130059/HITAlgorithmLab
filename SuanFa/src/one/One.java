@@ -8,16 +8,16 @@ import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 
 public class One {
-	public static final int HOW_MANY_POINTS = 6000;
+	public static final int HOW_MANY_POINTS =30;
 	public static final List<Point> Points = new ArrayList<Point>(HOW_MANY_POINTS);
 	public static final List<Point> divideConquerResult = new ArrayList<Point>();
 	public static final Map<Point, Boolean> visitedRecord = new HashMap<Point, Boolean>();
 
 	public static void main(String[] args) {
 		generatePoints();
-		//brutal();
-		Graham_Scan();
-		divide_Conquer();
+		brutal();
+		//Graham_Scan();
+		//divide_Conquer();
 
 	}
 
@@ -27,7 +27,7 @@ public class One {
 		for (Point p : copy) {
 			visitedRecord.put(p, false);
 		}
-		long startTime =System.nanoTime();;
+		long startTime =System.currentTimeMillis();
 		List<Point> sortPoints = sortx(copy);
 		Point p_0 = sortPoints.get(0);
 		Point p_n = sortPoints.get(1);
@@ -49,8 +49,8 @@ public class One {
 		}
 		divide(upPoints,p_0,p_n);
 		divide(downPoints,p_0,p_n);
-		long endTime = System.nanoTime();;
-		System.out.println("分治算法用时： " + (endTime - startTime) + "ns");
+		long endTime =System.currentTimeMillis();
+		System.out.println("分治算法用时： " + (endTime - startTime) + "ms");
 		//writeTofile("result/1/DivideAndConquerResult.txt", divideConquerResult);
 	}
 
@@ -109,7 +109,7 @@ public class One {
 
 	}
 	public static void Graham_Scan() {
-		long startTime = System.nanoTime();;
+		long startTime = System.currentTimeMillis();
 		List<Point> copy = new ArrayList<Point>();
 		copy.addAll(Points);
 		List<Point> result = new ArrayList<Point>();
@@ -145,8 +145,8 @@ public class One {
 
 		}
 		result.addAll(pointStack);
-		long endTime = System.nanoTime();
-		System.out.println("Graham_Scan算法用时： " + (endTime - startTime) + "ns");
+		long endTime = System.currentTimeMillis();
+		System.out.println("Graham_Scan算法用时： " + (endTime - startTime) + "ms");
 		//writeTofile("result/1/Graham_ScanResult.txt", result);
 
 	}

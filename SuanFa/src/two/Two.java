@@ -41,7 +41,7 @@ public class Two {
 		MAZE_M = Integer.parseInt(scanner.nextLine());
 		System.out.println("请输入迷宫纵坐标大小N");
 		MAZE_N = Integer.parseInt(scanner.nextLine());
-		MAZE = new Maze(MAZE_M, MAZE_N, MAZE_FILE_PATH_1);
+		MAZE = new Maze(MAZE_M, MAZE_N, MAZE_FILE_PATH_2);
 		drawMaze();
 		System.out.println("请输入起点横坐标");
 		int startX = Integer.parseInt(scanner.nextLine());
@@ -56,7 +56,7 @@ public class Two {
 		List<Cube> AstarResult = Astar();
 		drawResult(AstarResult, true, null);
 		System.out.println("A*算法计算完成，结果存入Astar.xls中");
-		List<Cube>BiAstarResult=BiAstar(MAZE_FILE_PATH_1);
+		List<Cube>BiAstarResult=BiAstar(MAZE_FILE_PATH_2);
 		Cube middle=BiAstarResult.get(0);
 		drawResult(BiAstarResult, false,middle);
 		System.out.println("双向A*算法计算完成，结果存入BiAstar.xls中");
